@@ -1,0 +1,19 @@
+<?xml version="1.0"?> 
+<transacciones> 
+    <facturas> 
+        <factura> 
+            <numeroFactura> fac1 </numeroFactura> 
+            <NITcliente> 123abc </NITcliente> 
+            <fecha> 01/02/2024 </fecha> 
+            <valor> 500 </valor> 
+        </factura> 
+    </facturas> 
+    <pagos> 
+        <pago> 
+            <codigoBanco> 0001a </codigoBanco> 
+            <fecha> 10/08/2023 </fecha> 
+            <NITcliente> 321cba </NITcliente> 
+            <valor> 1000 </valor> 
+        </pago>
+    </pagos> 
+</transacciones>
