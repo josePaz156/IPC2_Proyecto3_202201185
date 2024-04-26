@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Transacciones</title>
+</head>
+<body>
+    <nav>
+        <ul>
+          <li><a href="{% url 'index' %}">Configuracion</a></li>
+          <li><a class="active" href="#">Trasacciones</a></li>
+          <li><a href="#">Visualizacion</a></li>
+        </ul>
+      </nav>
+    </div>
+    <h1>Transacciones</h1>
+    <div>
+      <h2>Subir Archivos</h2>
+      <form method="post" enctype="multipart/form-data" action="/enviar-transac/">
+        {% csrf_token %}
+        <input type="file" name="file" accept=".txt, .pdf, .doc, .docx, .xml"><br><br>
+        <input type="submit" value="Subir Archivo">
+      </form>
+    </div>
+</body>
+</html>

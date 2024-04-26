@@ -1,0 +1,35 @@
+<?xml version="1.0"?> 
+<config> 
+    <clientes> 
+        <cliente> 
+            <NIT> 123abc </NIT> 
+            <nombre> Maria </nombre> 
+        </cliente>
+        <cliente> 
+            <NIT> 321cba </NIT> 
+            <nombre> Jose </nombre> 
+        </cliente>
+        <cliente> 
+            <NIT> 153efs </NIT> 
+            <nombre> Juan </nombre> 
+        </cliente>
+        <cliente> 
+            <NIT> 157jid </NIT> 
+            <nombre> Jose </nombre> 
+        </cliente>
+    </clientes> 
+    <bancos> 
+        <banco> 
+            <codigo> 0007a </codigo> 
+            <nombre> BI </nombre> 
+        </banco>
+        <banco> 
+            <codigo> 0002b </codigo> 
+            <nombre> Banco1 </nombre> 
+        </banco>
+        <banco> 
+            <codigo> 0003c </codigo> 
+            <nombre> BAM </nombre> 
+        </banco> 
+    </bancos>
+</config>

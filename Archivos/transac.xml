@@ -7,8 +7,44 @@
             <fecha> 01/02/2024 </fecha> 
             <valor> 500 </valor> 
         </factura> 
+        <factura> 
+            <numeroFactura> fac2 </numeroFactura> 
+            <NITcliente> 123abc </NITcliente> 
+            <fecha> 02/02/2024 </fecha> 
+            <valor> 500 </valor> 
+        </factura>
+        <factura> 
+            <numeroFactura> fac3 </numeroFactura> 
+            <NITcliente> 1560sdf </NITcliente> 
+            <fecha> 01/02/2024 </fecha> 
+            <valor> 1000 </valor> 
+        </factura>
+        <factura> 
+            <numeroFactura> fac4 </numeroFactura> 
+            <NITcliente> 498sde </NITcliente> 
+            <fecha> 05/02/2024 </fecha> 
+            <valor> 50 </valor> 
+        </factura>
     </facturas> 
     <pagos> 
+        <pago> 
+            <codigoBanco> 0001a </codigoBanco> 
+            <fecha> 10/08/2023 </fecha> 
+            <NITcliente> 321cba </NITcliente> 
+            <valor> 1000 </valor> 
+        </pago>
+        <pago> 
+            <codigoBanco> 0001a </codigoBanco> 
+            <fecha> 10/08/2023 </fecha> 
+            <NITcliente> 321cba </NITcliente> 
+            <valor> 1000 </valor> 
+        </pago>
+        <pago> 
+            <codigoBanco> 0001a </codigoBanco> 
+            <fecha> 10/08/2023 </fecha> 
+            <NITcliente> 321cba </NITcliente> 
+            <valor> 1000 </valor> 
+        </pago>
         <pago> 
             <codigoBanco> 0001a </codigoBanco> 
             <fecha> 10/08/2023 </fecha> 
