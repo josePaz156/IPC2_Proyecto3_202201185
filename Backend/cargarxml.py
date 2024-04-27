@@ -22,8 +22,6 @@ def cargar_configuracion(archivo_config):
     lst_clientesNuevos.clear()
     
     try:
-        print("Contenido del archivo XML:")
-        # print(archivo_config)  # Imprimir contenido del archivo
 
         xmlconfiguracion = ET.XML(archivo_config)
 
@@ -92,12 +90,6 @@ def cargar_configuracion(archivo_config):
     lst_clientes.sort(key=lambda x: x.NIT)
     lst_bancos.sort(key=lambda x: x.codigo)
 
-    for cliente in lst_clientes:
-        print(cliente.NIT + " - " + cliente.nombre)
-    
-    for banco in lst_bancos:
-        print(banco.codigo+ " - " + banco.nombre)
-
 
 def respuestaConfig(nombre_archivo):
 
@@ -138,15 +130,18 @@ def respuestaConfig(nombre_archivo):
         file.write('<?xml version="1.0"?>\n')
         file.write(formatted_xml)
 
+
 def carga_transac(archivo_transac):
 
     facturas_duplicadas = 0
+    factura_error = 0
     facturas_nuevas = 0
     pago_duplicado = 0
     pago_nuevo = 0
+    pago_error = 0
+
 
     try:
-        print(archivo_transac)
         xmltransaccion = ET.XML(archivo_transac)
 
         for factura in xmltransaccion.findall('facturas/factura'):
@@ -157,16 +152,23 @@ def carga_transac(archivo_transac):
 
             factura_existente = False
 
-            for elemento in lst_facturas:
-                if elemento.numero == numero:
-                    facturas_duplicadas += 1
-                    factura_existente = True
-                    break
-                
-            if not factura_existente:
-                new_factura = Factura(numero, nit, fecha, valor)
-                lst_facturas.append(new_factura)
-                facturas_nuevas += 1
+            cliente_existente = any(cliente.NIT == nit for cliente in lst_clientes)
+            if cliente_existente:
+
+                for elemento in lst_facturas:
+                    if elemento.numero == numero:
+                        facturas_duplicadas += 1
+                        factura_existente = True
+                        break
+                    
+                if not factura_existente:
+                    new_factura = Factura(numero, nit, fecha, valor)
+                    lst_facturas.append(new_factura)
+                    facturas_nuevas += 1
+            
+            else:
+                factura_error += 1
+
         
         for pago in xmltransaccion.findall('pagos/pago'):
             codigo = pago.find('codigoBanco').text.strip()
@@ -176,23 +178,29 @@ def carga_transac(archivo_transac):
 
             pago_existente = False
 
-            for elemento in lst_pagos:
+            banco_existente = any(banco.codigo == codigo for banco in lst_bancos)
+            cliente_existente = any(cliente.NIT == nit_pago for cliente in lst_clientes)
 
-                if elemento.codigo == codigo and elemento.fecha == fecha and elemento.nit == nit_pago:
-                    pago_duplicado += 1
-                    pago_existente = True
-                    break
-            
-            if not pago_existente:
-                new_pago = Pago(codigo, fecha_pago, nit_pago, valor_pago)
-                lst_pagos.append(new_pago)
-                pago_nuevo += 1
+            if banco_existente and cliente_existente:
+                for elemento in lst_pagos:
+                    if elemento.codigo == codigo and elemento.fecha == fecha_pago and elemento.nit == nit_pago:
+                        pago_duplicado += 1
+                        pago_existente = True
+                        break
+
+                if not pago_existente:
+                    new_pago = Pago(codigo, fecha_pago, nit_pago, valor_pago)
+                    lst_pagos.append(new_pago)
+                    pago_nuevo += 1
+            else:
+                pago_error += 1
+
 
 
         now = datetime.datetime.now()
         nombre_archivo = "respuestaTransac_" + now.strftime("%Y%m%d_%H%M%S") + ".xml"
 
-        respuestaTransac(nombre_archivo, facturas_nuevas, facturas_duplicadas, pago_duplicado, pago_nuevo)    
+        respuestaTransac(nombre_archivo, facturas_nuevas, facturas_duplicadas, pago_duplicado, pago_nuevo, factura_error, pago_error)    
         
     except ET.ParseError:
         print("Error: El archivo XML no está bien formateado o contiene errores.")
@@ -200,37 +208,32 @@ def carga_transac(archivo_transac):
     except Exception as e:
         print("Error:", e)
 
-def respuestaTransac(nombre_archivo, facturas_nuevas, facturas_duplicadas, pago_duplicado, pago_nuevo):
+def respuestaTransac(nombre_archivo, facturas_nuevas, facturas_duplicadas, pago_duplicado, pago_nuevo, factura_error, pago_error):
 
     root = ET.Element('transacciones')
 
     facturas = ET.SubElement(root, 'facturas')
 
-    while facturas_nuevas > 0:
 
-        nueva = ET.SubElement(facturas, 'nuevasFacturas')
-        nueva.text = str(facturas_nuevas)
-        facturas_nuevas -= 1
-    
-    while facturas_duplicadas >0:
+    nueva = ET.SubElement(facturas, 'nuevasFacturas')
+    nueva.text = str(facturas_nuevas)
 
-        duplicada = ET.SubElement(facturas, 'facturasDuplicadas')
-        duplicada.text = str(facturas_duplicadas)
-        facturas_duplicadas -= 1
+    duplicada = ET.SubElement(facturas, 'facturasDuplicadas')
+    duplicada.text = str(facturas_duplicadas)
+
+    error_fac = ET.SubElement(facturas, 'facturasConError')
+    error_fac.text = str(factura_error)
     
     pagos = ET.SubElement(root, 'pagos')
 
-    while pago_nuevo > 0:
+    nuevo = ET.SubElement(pagos, 'nuevosPagos')
+    nuevo.text = str(pago_nuevo) 
 
-        nuevo = ET.SubElement(pagos, 'nuevosPagos')
-        nuevo.text = str(pago_nuevo)
-        pago_nuevo -= 1    
+    duplicado = ET.SubElement(pagos, 'duplicadosPagos')
+    duplicado.text = str(pago_duplicado)
 
-    while pago_duplicado > 0:
-
-        duplicado = ET.SubElement(pagos, 'duplicadosPagos')
-        duplicado.text = str(pago_duplicado)
-        pago_duplicado -= 1 
+    error_pa = ET.SubElement(pagos, 'pagosConError')
+    error_pa.text = str(pago_error)
 
     xmlstr = ET.tostring(root, encoding='utf8', method='xml')
     formatted_xml = xmlstr.decode()
@@ -238,7 +241,6 @@ def respuestaTransac(nombre_archivo, facturas_nuevas, facturas_duplicadas, pago_
 
     directorio_padre = os.path.dirname(os.path.abspath(__file__))
     
-    # Navega un nivel hacia arriba para acceder a la carpeta "archivos"
     ruta_archivos = os.path.join(directorio_padre, "..", "Archivos/Respuestas")
 
     ruta_completa = os.path.join(ruta_archivos, nombre_archivo)
@@ -247,3 +249,25 @@ def respuestaTransac(nombre_archivo, facturas_nuevas, facturas_duplicadas, pago_
         file.write('<?xml version="1.0"?>\n')
         file.write(formatted_xml)
 
+def inicializar():
+    for cliente in lst_clientes:
+        print(cliente.NIT + " - " + cliente.nombre)
+    
+    for banco in lst_bancos:
+        print(banco.codigo+ " - " + banco.nombre)
+
+    for factura in lst_facturas:
+        print(factura.numero)
+
+    for pago in lst_pagos:
+        print(pago.codigo+ " - " + pago.nit)
+
+    lst_clientes.clear()
+    lst_bancos.clear()
+    lst_facturas.clear()
+    lst_pagos.clear()
+    
+    print(lst_bancos)
+    print(lst_clientes)
+    print(lst_facturas)
+    print(lst_pagos)

@@ -1,7 +1,7 @@
 from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from xml.etree import ElementTree as ET
-from cargarxml import cargar_configuracion, carga_transac
+from cargarxml import cargar_configuracion, carga_transac, inicializar
 
 app = Flask(__name__)
 CORS(app)
@@ -24,6 +24,12 @@ def cargar_xml_transac():
     configXML = entradaXML.decode('utf-8')
     carga_transac(configXML)
     return jsonify({"message": "Archivo cargado Exitosamente"})
+
+@app.route('/postInicializar', methods=['DELETE'])
+def post_inicializar():
+    inicializar()
+    return jsonify({"message": "Inicializacion Exitosa"})
+
 
 
 if __name__ == '__main__':

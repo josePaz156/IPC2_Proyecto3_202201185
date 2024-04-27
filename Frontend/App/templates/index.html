@@ -29,9 +29,10 @@
   </div>
   <div>
     <h2>Inicializar</h2>
-    <form method="post">
+    <form action="/borrar_datos/" method="post">
       {% csrf_token %}
-      <input type="submit" value="Iniciar Programa">
+      <input type="hidden" name="_method" value="DELETE">
+      <button type="submit">Borrar todos los datos</button>
   </form>
   </div>
 </body>

@@ -6,4 +6,5 @@ urlpatterns = [
     path('transac/', views.transac, name='transac'),
     path('enviar-archivo/', views.cargarXML, name='enviar_archivo'),
     path('enviar-transac/', views.cargaTransac, name='enviar_transac'),
+    path('borrar_datos/', views.inicializar, name='inicializar'),
 ]

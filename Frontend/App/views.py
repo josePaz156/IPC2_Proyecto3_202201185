@@ -52,3 +52,22 @@ def cargaTransac(request):
         return render(request, 'respuesta.html', context)
 
     return render(request, 'respuesta.html', context)
+
+def inicializar(request):
+    context = {
+        'content': None
+    }
+
+    if request.method == 'POST':
+        # Realizar la petición POST a la API para inicializar
+        response = requests.delete(API + '/postInicializar')
+
+        if response.status_code == 200:
+            # Si la petición fue exitosa, establecer el mensaje de éxito en el contexto
+            context['content'] = "Datos inicializados correctamente."
+        else:
+            # Si ocurrió algún error en la petición, establecer un mensaje de error en el contexto
+            context['content'] = "Hubo un error al intentar inicializar los datos. Por favor, inténtalo de nuevo."
+
+    # Renderizar el template con el contexto correspondiente
+    return render(request, 'inicializar.html', context)
