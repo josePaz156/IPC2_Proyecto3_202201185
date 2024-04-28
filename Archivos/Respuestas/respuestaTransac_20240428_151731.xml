@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<?xml version='1.0' encoding='utf8'?>
+<transacciones>
+<facturas>
+<nuevasFacturas>2</nuevasFacturas>
+<facturasDuplicadas>2</facturasDuplicadas>
+<facturasConError>0</facturasConError>
+</facturas>
+<pagos>
+<nuevosPagos>2</nuevosPagos>
+<duplicadosPagos>2</duplicadosPagos>
+<pagosConError>0</pagosConError>
+</pagos>
+</transacciones>

@@ -13,12 +13,12 @@
         <ul>
           <li><a href="{% url 'index' %}">Configuracion</a></li>
           <li><a class="active" href="#">Trasacciones</a></li>
-          <li><a href="#">Visualizacion</a></li>
+          <li><a href="{% url 'peticiones' %}">Peticiones</a></li>
         </ul>
       </nav>
     </div>
     <h1>Transacciones</h1>
-    <div>
+    <div class="divisiones">
       <h2>Subir Archivos</h2>
       <form method="post" enctype="multipart/form-data" action="/enviar-transac/">
         {% csrf_token %}

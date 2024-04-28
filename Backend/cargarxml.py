@@ -79,7 +79,7 @@ def cargar_configuracion(archivo_config):
         nombre_archivo = "respuestaConfig_" + now.strftime("%Y%m%d_%H%M%S") + ".xml"
 
 
-        respuestaConfig(nombre_archivo)
+        configXML = respuestaConfig(nombre_archivo)
 
     except ET.ParseError:
         print("Error: El archivo XML no está bien formateado o contiene errores.")
@@ -89,6 +89,8 @@ def cargar_configuracion(archivo_config):
 
     lst_clientes.sort(key=lambda x: x.NIT)
     lst_bancos.sort(key=lambda x: x.codigo)
+
+    return configXML
 
 
 def respuestaConfig(nombre_archivo):
@@ -129,6 +131,12 @@ def respuestaConfig(nombre_archivo):
     with open(ruta_completa, "w") as file:
         file.write('<?xml version="1.0"?>\n')
         file.write(formatted_xml)
+
+    for cliente in lst_clientes:
+        print(cliente.NIT)
+        print(cliente.nombre)
+    
+    return formatted_xml
 
 
 def carga_transac(archivo_transac):
@@ -195,18 +203,18 @@ def carga_transac(archivo_transac):
             else:
                 pago_error += 1
 
-
-
         now = datetime.datetime.now()
         nombre_archivo = "respuestaTransac_" + now.strftime("%Y%m%d_%H%M%S") + ".xml"
 
-        respuestaTransac(nombre_archivo, facturas_nuevas, facturas_duplicadas, pago_duplicado, pago_nuevo, factura_error, pago_error)    
+        transacXML = respuestaTransac(nombre_archivo, facturas_nuevas, facturas_duplicadas, pago_duplicado, pago_nuevo, factura_error, pago_error)    
         
     except ET.ParseError:
         print("Error: El archivo XML no está bien formateado o contiene errores.")
 
     except Exception as e:
         print("Error:", e)
+
+    return transacXML
 
 def respuestaTransac(nombre_archivo, facturas_nuevas, facturas_duplicadas, pago_duplicado, pago_nuevo, factura_error, pago_error):
 
@@ -248,6 +256,8 @@ def respuestaTransac(nombre_archivo, facturas_nuevas, facturas_duplicadas, pago_
     with open(ruta_completa, "w") as file:
         file.write('<?xml version="1.0"?>\n')
         file.write(formatted_xml)
+
+    return formatted_xml
 
 def inicializar():
     for cliente in lst_clientes:

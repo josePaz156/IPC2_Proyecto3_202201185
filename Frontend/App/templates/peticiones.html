@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Peticiones</title>
+</head>
+<body>
+    <div>
+        <nav>
+          <ul>
+            <li><a href="{% url 'index' %}">Configuracion</a></li>
+            <li><a href="{% url 'transac' %}">Trasacciones</a></li>
+            <li><a class="active" href="#">Peticiones</a></li>
+          </ul>
+        </nav>
+    </div>
+    <h1>Peticiones</h1>
+    <div class="divisiones">
+        <div>
+            <h2>Consultar Estado de Cuenta</h2>
+            <h3>Ingrese su NIT</h3>  
+            <form method="GET" action="/cosulta_estado_cuenta/">
+                {% csrf_token %}
+                <input type="text" name="NIT" id="NIT">
+                <input type="submit" value="Consultar">
+            </form>
+            <br>
+            <textarea id="informeTextarea" class="align-right" rows="16" cols="100">
+            </textarea>
+            <script>
+                var informeTextarea = document.getElementById('informeTextarea');
+                
+                function formatInforme(informe) {
+                    var formattedText = '';
+                    formattedText += 'NIT del Cliente: ' + informe.nit_cliente + '\n';
+                    formattedText += 'Nombre del Cliente: ' + informe.nombre_cliente + '\n';
+                    formattedText += 'Saldo: ' + informe.saldo_anterior + '\n';
+                    formattedText += '\nTransacciones:\n';
+                    informe.transacciones.forEach(function(transaccion) {
+                        formattedText += 'Fecha: ' + transaccion.fecha + '\n';
+                        formattedText += 'Tipo: ' + transaccion.tipo + '\n';
+                        formattedText += 'Número: ' + transaccion.numero + '\n';
+                        formattedText += 'Valor: ' + transaccion.valor + '\n\n';
+                    });
+                    return formattedText;
+                }
+                
+                var informeJSON = JSON.parse('{{ informe|escapejs }}');
+                
+                var informeText = formatInforme(informeJSON);
+                
+                informeTextarea.value = informeText;
+            </script>
+        </div>
+        <br>
+        <div style="display: block;">
+            <h3>Ver listado de clientes</h3>
+            <form method="GET" action="/mostrar_clientes/">
+                <input type="submit" value="Mostrar todos los clientes">
+            </form>
+            <textarea rows="16" cols="30">{{listado}}</textarea>
+        </div>
+        <br>
+        <div>
+            <h2>Consultar Ingresos</h2>
+            <form>
+                <h3>Ingrese el Mes</h3>
+                <input type="text" name="NIT" id="NIT">
+                <h3>Ingrese el Año</h3>
+                <input type="text" name="NIT" id="NIT">
+                <br>
+                <input type="submit" value="Mostrar Ingresos">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

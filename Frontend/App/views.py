@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .forms import FileForm
+from django.http import HttpResponse
 import requests
 
 API = 'http://localhost:5000'
@@ -10,6 +11,9 @@ def index(request):
 
 def transac(request):
     return render(request, 'transac.html')
+
+def peticiones(request):
+    return render(request, 'peticiones.html')
 
 def cargarXML(request):
     context = {
@@ -22,7 +26,7 @@ def cargarXML(request):
         if form.is_valid():
             txt = form.cleaned_data['file'].read()
 
-            response = requests.post(API+'/postCargarConfig', data=txt)  # Agregar esta línea para depurar
+            response = requests.post(API+'/postCargarConfig', data=txt)
             if response.status_code == 200:
                 context['content'] = "El archivo se cargó correctamente."
             else:
@@ -43,7 +47,7 @@ def cargaTransac(request):
         if form.is_valid():
             txt = form.cleaned_data['file'].read()
 
-            response = requests.post(API+'/postCargarTransac', data=txt)  # Agregar esta línea para depurar
+            response = requests.post(API+'/postCargarTransac', data=txt)
             if response.status_code == 200:
                 context['content'] = "El archivo se cargó correctamente."
             else:
@@ -59,15 +63,41 @@ def inicializar(request):
     }
 
     if request.method == 'POST':
-        # Realizar la petición POST a la API para inicializar
         response = requests.delete(API + '/postInicializar')
 
         if response.status_code == 200:
-            # Si la petición fue exitosa, establecer el mensaje de éxito en el contexto
             context['content'] = "Datos inicializados correctamente."
         else:
-            # Si ocurrió algún error en la petición, establecer un mensaje de error en el contexto
             context['content'] = "Hubo un error al intentar inicializar los datos. Por favor, inténtalo de nuevo."
 
-    # Renderizar el template con el contexto correspondiente
     return render(request, 'inicializar.html', context)
+
+def consultar_estado_cuenta(request):
+    context = {}  # Inicializa un diccionario para el contexto
+
+    if request.method == 'GET':
+        nit = request.GET.get('NIT')  # Obtiene el NIT del formulario
+
+        # Envía la solicitud al endpoint correcto del API Flask
+        response = requests.get(f'{API}/getConsultarCuenta/{nit}')
+
+        if response.status_code == 200:
+            # Parsea la respuesta JSON y extrae el informe
+            informe = response.json()
+            context['informe'] = informe
+        else:
+            context['error'] = 'Error al consultar el estado de cuenta.'
+
+    return render(request, 'peticiones.html', context)
+
+def mostar_clientes(request):
+    context = {}
+
+    response = requests.get(API + '/getListadoClientes')
+    if response.status_code == 200:
+        listado = response.text
+        context['listado'] = listado 
+    else:
+        context['error'] = 'Error.'
+
+    return render(request, 'peticiones.html', context)

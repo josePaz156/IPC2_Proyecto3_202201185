@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<?xml version='1.0' encoding='utf8'?>
+<respuesta>
+<clientes>
+<creados>153efs - Juan</creados>
+<creados>157jid - Jose</creados>
+<Actualizados>321cba - Jose</Actualizados>
+</clientes>
+<bancos>
+<creados>0007a - BI</creados>
+<Actualizados>0002b - Banco1</Actualizados>
+</bancos>
+</respuesta>
