@@ -23,7 +23,7 @@ def generar_informe(nit):
     # Procesar las facturas del cliente
     for factura in lst_facturas:
         if factura.NITcliente == nit:
-            saldo -= int(factura.valor)
+            saldo -= float(factura.valor)
             lst_transacciones.append({
                 "tipo": "factura",
                 "numero": factura.numero,
@@ -34,7 +34,7 @@ def generar_informe(nit):
     # Procesar los pagos del cliente
     for pago in lst_pagos:
         if pago.nit == nit:
-            saldo += int(pago.valor)
+            saldo += float(pago.valor)
             lst_transacciones.append({
                 "tipo": "pago",
                 "codigoBanco": pago.codigo,

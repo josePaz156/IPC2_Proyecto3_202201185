@@ -2,30 +2,74 @@
 <config> 
     <clientes> 
         <cliente> 
-            <NIT> 123abc </NIT> 
-            <nombre> Maria </nombre> 
+            <NIT>123abc</NIT> 
+            <nombre>Maria</nombre> 
         </cliente>
         <cliente> 
-            <NIT> 321cba </NIT> 
-            <nombre> Juan </nombre> 
+            <NIT>321cba</NIT> 
+            <nombre>Juan</nombre> 
         </cliente>
         <cliente> 
-            <NIT> 852edc </NIT> 
-            <nombre> Pedro </nombre> 
+            <NIT>852edc</NIT> 
+            <nombre>Pedro</nombre> 
+        </cliente>
+        <cliente> 
+            <NIT>456xyz</NIT> 
+            <nombre>Carlos</nombre> 
+        </cliente>
+        <cliente> 
+            <NIT>789uvw</NIT> 
+            <nombre>Sofia</nombre> 
+        </cliente>
+        <cliente> 
+            <NIT>951rst</NIT> 
+            <nombre>Ana</nombre> 
+        </cliente>
+        <cliente> 
+            <NIT>753nop</NIT> 
+            <nombre>Luis</nombre> 
+        </cliente>
+        <cliente> 
+            <NIT>159mno</NIT> 
+            <nombre>Pablo</nombre> 
+        </cliente>
+        <cliente> 
+            <NIT>357qrs</NIT> 
+            <nombre>Elena</nombre> 
+        </cliente>
+        <cliente> 
+            <NIT>246jkl</NIT> 
+            <nombre>Jorge</nombre> 
+        </cliente>
+        <cliente> 
+            <NIT>802abc</NIT> 
+            <nombre>Marcela</nombre> 
         </cliente>
     </clientes> 
     <bancos> 
         <banco> 
-            <codigo> 0001a </codigo> 
-            <nombre> Inmobiliario </nombre> 
+            <codigo>0001a</codigo> 
+            <nombre>Inmobiliario</nombre> 
         </banco>
         <banco> 
-            <codigo> 0002b </codigo> 
-            <nombre> GyT </nombre> 
+            <codigo>0002b</codigo> 
+            <nombre>GyT</nombre> 
         </banco>
         <banco> 
-            <codigo> 0003c </codigo> 
-            <nombre> BAM </nombre> 
+            <codigo>0003c</codigo> 
+            <nombre>BAM</nombre> 
         </banco> 
+        <banco> 
+            <codigo>0004d</codigo> 
+            <nombre>Banco de Occidente</nombre> 
+        </banco>
+        <banco> 
+            <codigo>0005e</codigo> 
+            <nombre>Banrural</nombre> 
+        </banco>
+        <banco> 
+            <codigo>0006f</codigo> 
+            <nombre>Industrial</nombre> 
+        </banco>
     </bancos>
 </config>

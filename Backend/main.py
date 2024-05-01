@@ -4,6 +4,7 @@ from xml.etree import ElementTree as ET
 from cargarxml import cargar_configuracion, carga_transac, inicializar
 from consulta_cuenta import generar_informe
 from listado_clientes import generar_listado
+from grafico import ordenar_datos
 
 app = Flask(__name__)
 CORS(app)
@@ -41,6 +42,22 @@ def consulta(NIT):
 def listado():
     listado = generar_listado()
     return listado
+
+@app.route('/graphs', methods=['GET'])
+def grafica():
+    mes = request.args.get('mes')
+    año = int(request.args.get('año'))
+
+    if mes is None or año is None:
+        return "Error: Debes proporcionar valores para 'mes' y 'año'", 400
+
+    try:
+        año = int(año)
+    except ValueError:
+        return "Error: El valor de 'año' debe ser un número entero", 400
+
+    data = ordenar_datos(mes, año)
+    return jsonify(data)
 
 if __name__ == '__main__':
     app.run(host='localhost', port=5000, debug=True)

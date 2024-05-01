@@ -9,6 +9,9 @@ API = 'http://localhost:5000'
 def index(request):
     return render(request, 'index.html')
 
+def grafico(request):
+    return render(request, 'grafico.html')
+
 def transac(request):
     return render(request, 'transac.html')
 
@@ -101,3 +104,40 @@ def mostar_clientes(request):
         context['error'] = 'Error.'
 
     return render(request, 'peticiones.html', context)
+
+def generar_grafico(request):
+
+    context = {}
+
+    if request.method == 'GET':
+
+        mes = request.GET.get('mes')
+        año = request.GET.get('año')
+
+        params = {'mes': mes, 'año': año}
+
+        response = requests.get(API + '/graphs', params=params)
+
+        bancos = []
+        ganancias = []
+
+        if response.status_code == 200:
+            # Parsea la respuesta JSON y extrae el informe
+            informe = response.json()
+            
+            print(informe)
+
+            for banco in informe:
+                bancos.append(banco)
+                print(banco)
+
+                ganancias.append(informe[banco])
+
+                print(informe[banco])
+            
+            context = {
+                'bancos': bancos,
+                'ganancias': ganancias
+            }
+
+            return render(request, 'grafico.html', context)

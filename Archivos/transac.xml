@@ -2,54 +2,128 @@
 <transacciones> 
     <facturas> 
         <factura> 
-            <numeroFactura> fac1 </numeroFactura> 
-            <NITcliente> 123abc </NITcliente> 
-            <fecha> 01/02/2024 </fecha> 
-            <valor> 500 </valor> 
+            <numeroFactura>fac1</numeroFactura> 
+            <NITcliente>852edc</NITcliente> 
+            <fecha>01/02/2024</fecha> 
+            <valor>500</valor> 
         </factura> 
         <factura> 
-            <numeroFactura> fac2 </numeroFactura> 
-            <NITcliente> 123abc </NITcliente> 
-            <fecha> 02/02/2024 </fecha> 
-            <valor> 500 </valor> 
+            <numeroFactura>fac2</numeroFactura> 
+            <NITcliente>123abc</NITcliente> 
+            <fecha>02/02/2024</fecha> 
+            <valor>500</valor> 
         </factura>
         <factura> 
-            <numeroFactura> fac3 </numeroFactura> 
-            <NITcliente> 1560sdf </NITcliente> 
-            <fecha> 01/02/2024 </fecha> 
-            <valor> 1000 </valor> 
+            <numeroFactura>fac3</numeroFactura> 
+            <NITcliente>852edc</NITcliente> 
+            <fecha>01/02/2024</fecha> 
+            <valor>1000</valor> 
         </factura>
         <factura> 
-            <numeroFactura> fac4 </numeroFactura> 
-            <NITcliente> 498sde </NITcliente> 
-            <fecha> 05/02/2024 </fecha> 
-            <valor> 50 </valor> 
+            <numeroFactura>fac4</numeroFactura> 
+            <NITcliente>153efs</NITcliente> 
+            <fecha>05/02/2024</fecha> 
+            <valor>50</valor> 
+        </factura>
+        <!-- Nuevas facturas -->
+        <factura> 
+            <numeroFactura>fac5</numeroFactura> 
+            <NITcliente>951rst</NITcliente> 
+            <fecha>10/02/2024</fecha> 
+            <valor>750</valor> 
+        </factura>
+        <factura> 
+            <numeroFactura>fac6</numeroFactura> 
+            <NITcliente>357qrs</NITcliente> 
+            <fecha>12/02/2024</fecha> 
+            <valor>250</valor> 
+        </factura>
+        <factura> 
+            <numeroFactura>fac7</numeroFactura> 
+            <NITcliente>802abc</NITcliente> 
+            <fecha>15/02/2024</fecha> 
+            <valor>100</valor> 
+        </factura>
+        <factura> 
+            <numeroFactura>fac8</numeroFactura> 
+            <NITcliente>357qrs</NITcliente> 
+            <fecha>17/02/2024</fecha> 
+            <valor>350</valor> 
+        </factura>
+        <factura> 
+            <numeroFactura>fac9</numeroFactura> 
+            <NITcliente>246jkl</NITcliente> 
+            <fecha>20/02/2024</fecha> 
+            <valor>450</valor> 
+        </factura>
+        <factura> 
+            <numeroFactura>fac10</numeroFactura> 
+            <NITcliente>159mno</NITcliente> 
+            <fecha>25/02/2024</fecha> 
+            <valor>600</valor> 
         </factura>
     </facturas> 
     <pagos> 
         <pago> 
-            <codigoBanco> 0001a </codigoBanco> 
-            <fecha> 10/08/2023 </fecha> 
-            <NITcliente> 321cba </NITcliente> 
-            <valor> 1000 </valor> 
+            <codigoBanco>0001a</codigoBanco> 
+            <fecha>10/08/2023</fecha> 
+            <NITcliente>321cba</NITcliente> 
+            <valor>1000</valor> 
         </pago>
         <pago> 
-            <codigoBanco> 0001a </codigoBanco> 
-            <fecha> 10/08/2023 </fecha> 
-            <NITcliente> 321cba </NITcliente> 
-            <valor> 1000 </valor> 
+            <codigoBanco>0002b</codigoBanco> 
+            <fecha>10/08/2023</fecha> 
+            <NITcliente>153efs</NITcliente> 
+            <valor>1000</valor> 
         </pago>
         <pago> 
-            <codigoBanco> 0001a </codigoBanco> 
-            <fecha> 10/08/2023 </fecha> 
-            <NITcliente> 321cba </NITcliente> 
-            <valor> 1000 </valor> 
+            <codigoBanco>0003c</codigoBanco> 
+            <fecha>10/08/2023</fecha> 
+            <NITcliente>157jid</NITcliente> 
+            <valor>1000</valor> 
         </pago>
         <pago> 
-            <codigoBanco> 0001a </codigoBanco> 
-            <fecha> 10/08/2023 </fecha> 
-            <NITcliente> 321cba </NITcliente> 
-            <valor> 1000 </valor> 
+            <codigoBanco>0001a</codigoBanco> 
+            <fecha>10/08/2023</fecha> 
+            <NITcliente>123abc</NITcliente> 
+            <valor>1000</valor> 
+        </pago>
+        <pago> 
+            <codigoBanco>0002b</codigoBanco> 
+            <fecha>10/08/2023</fecha> 
+            <NITcliente>157jid</NITcliente> 
+            <valor>1000</valor> 
+        </pago>
+        <!-- Nuevos pagos -->
+        <pago> 
+            <codigoBanco>0004d</codigoBanco> 
+            <fecha>10/08/2023</fecha> 
+            <NITcliente>951rst</NITcliente> 
+            <valor>1500</valor> 
+        </pago>
+        <pago> 
+            <codigoBanco>0005e</codigoBanco> 
+            <fecha>10/08/2023</fecha> 
+            <NITcliente>357qrs</NITcliente> 
+            <valor>200</valor> 
+        </pago>
+        <pago> 
+            <codigoBanco>0006f</codigoBanco> 
+            <fecha>10/08/2023</fecha> 
+            <NITcliente>802abc</NITcliente> 
+            <valor>300</valor> 
+        </pago>
+        <pago> 
+            <codigoBanco>0004d</codigoBanco> 
+            <fecha>10/08/2023</fecha> 
+            <NITcliente>123xyz</NITcliente> 
+            <valor>400</valor> 
+        </pago>
+        <pago> 
+            <codigoBanco>0005e</codigoBanco> 
+            <fecha>10/08/2023</fecha> 
+            <NITcliente>456abc</NITcliente> 
+            <valor>500</valor> 
         </pago>
     </pagos> 
 </transacciones>
