@@ -4,6 +4,7 @@ from clas_factura import Factura
 from clas_pago import Pago
 import xml.etree.ElementTree as ET
 import datetime
+import re
 import os
 
 lst_bancos = []
@@ -155,8 +156,14 @@ def carga_transac(archivo_transac):
         for factura in xmltransaccion.findall('facturas/factura'):
             numero = factura.find('numeroFactura').text.strip()
             nit = factura.find('NITcliente').text.strip()
-            fecha = factura.find('fecha').text.strip()
+            fecha_factura_texto = factura.find('fecha').text.strip()
             valor = factura.find('valor').text.strip()
+
+            fecha_match = re.search(r'(\d{1,2}/\d{1,2}/\d{4})', fecha_factura_texto)
+            if fecha_match:
+                fecha_factura = fecha_match.group(1)
+            else:
+                fecha_factura = None
 
             factura_existente = False
 
@@ -170,7 +177,7 @@ def carga_transac(archivo_transac):
                         break
                     
                 if not factura_existente:
-                    new_factura = Factura(numero, nit, fecha, valor)
+                    new_factura = Factura(numero, nit, fecha_factura, valor)
                     lst_facturas.append(new_factura)
                     facturas_nuevas += 1
             
@@ -180,9 +187,15 @@ def carga_transac(archivo_transac):
         
         for pago in xmltransaccion.findall('pagos/pago'):
             codigo = pago.find('codigoBanco').text.strip()
-            fecha_pago = pago.find('fecha').text.strip()
+            fecha_pago_texto = pago.find('fecha').text.strip()
             nit_pago = pago.find('NITcliente').text.strip()
             valor_pago = pago.find('valor').text.strip()
+
+            fecha_match = re.search(r'(\d{1,2}/\d{1,2}/\d{4})', fecha_pago_texto)
+            if fecha_match:
+                fecha_pago = fecha_match.group(1)
+            else:
+                fecha_pago = None
 
             pago_existente = False
 

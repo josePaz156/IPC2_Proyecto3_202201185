@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<?xml version='1.0' encoding='utf8'?>
+<respuesta>
+<clientes>
+<creados>123abc - Maria</creados>
+<creados>321cba - Juan</creados>
+<creados>852edc - Pedro</creados>
+<creados>456xyz - Carlos</creados>
+<creados>789uvw - Sofia</creados>
+<creados>951rst - Ana</creados>
+<creados>753nop - Luis</creados>
+<creados>159mno - Pablo</creados>
+<creados>357qrs - Elena</creados>
+<creados>246jkl - Jorge</creados>
+<creados>802abc - Marcela</creados>
+</clientes>
+<bancos>
+<creados>0001a - Inmobiliario</creados>
+<creados>0002b - GyT</creados>
+<creados>0003c - BAM</creados>
+<creados>0004d - Banco de Occidente</creados>
+<creados>0005e - Banrural</creados>
+<creados>0006f - Industrial</creados>
+</bancos>
+</respuesta>
